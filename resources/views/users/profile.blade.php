@@ -18,6 +18,7 @@
                     </div>
                     @if(auth()->check())
                     <div class="mt-4 sm:mt-0 sm:ml-auto">
+                        @if(Auth::id() !== $user->id)
                         @if(Auth::check() && !Auth::user()->isFollowing($user))
                         <form style="display:inline" action="{{route('follow', $user->id)}}" method="GET">
                             <button id="followButton"
@@ -30,8 +31,9 @@
                             <button id="followButton"
                                 class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                 Unfollow
-                            </button>
-                        </form>
+                                </button>
+                                </form>
+                            @endif
                         @endif
                     </div>
                     @endif
