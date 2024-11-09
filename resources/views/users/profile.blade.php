@@ -19,21 +19,30 @@
                     @if(auth()->check())
                     <div class="mt-4 sm:mt-0 sm:ml-auto">
                         @if(Auth::id() !== $user->id)
-                        @if(Auth::check() && !Auth::user()->isFollowing($user))
-                        <form style="display:inline" action="{{route('follow', $user->id)}}" method="GET">
-                            <button id="followButton"
-                                class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Follow
-                            </button>
-                        </form>
-                        @else
-                        <form style="display:inline" action="{{route('unfollow', $user->id)}}" method="GET">
-                            <button id="followButton"
-                                class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                Unfollow
+                            @if(Auth::check() && !Auth::user()->isFollowing($user))
+                            <form style="display:inline" action="{{route('follow', $user->id)}}" method="GET">
+                                <button id="followButton"
+                                    class="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Follow
                                 </button>
-                                </form>
-                            @endif
+                            </form>
+                            @else
+                            <form style="display:inline" action="{{route('unfollow', $user->id)}}" method="GET">
+                                <button id="followButton"
+                                    class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                    Unfollow
+                                    </button>
+                                    </form>
+                                @endif
+                        @else
+                            <div class="mt-4 sm:mt-0 sm:ml-auto">
+                            <!-- Edit Profile button for current user's profile -->
+                            <!-- Assuming you will check if this is the current user's profile -->
+                                <a href="{{route('edit.profile')}}"
+                                    class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
+                                Edit Profile
+                                </a>
+                            </div>
                         @endif
                     </div>
                     @endif
